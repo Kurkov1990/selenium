@@ -1,3 +1,4 @@
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -8,16 +9,25 @@ public class MainClass {
 
     public static void main(String[] args) {
 
-        File file = new File("C:\\Users\\kurkov\\IdeaProjects\\test_selenium\\chromedriver.exe");
+        File file = new File("C:\\Users\\Andrey\\IdeaProjects\\selenium\\chromedriver.exe");
 
         System.setProperty("webdriver.chrome.driver", file.getAbsolutePath() );
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
+        WebDriver driver = new ChromeDriver();
 
-        WebDriver driver = new ChromeDriver( options );
+        driver.manage().window().setSize(new Dimension(900, 500));
 
-        driver.get("https://www.seleniumhq.org/");
+        driver.get("https://google.com/");
+        driver.navigate().to("https://www.seleniumhq.org/");
+        driver.navigate().back();
+        driver.navigate().forward();
+        driver.navigate().refresh();
+
+        System.out.println(driver.getTitle());
+        System.out.println(driver.getCurrentUrl());
+
+        driver.quit();
+
 
     }
 
